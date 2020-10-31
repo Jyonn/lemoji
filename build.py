@@ -1,4 +1,10 @@
-from lemoji.generator.generator import Generator
+from lEmoji.generator import Generator
 
 
-Generator().generate()
+proxies = {
+  "http": "http://localhost:7890",
+  "https": "http://localhost:7890",
+}
+
+
+Generator(proxies=proxies).generate()

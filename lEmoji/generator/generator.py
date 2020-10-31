@@ -1,15 +1,16 @@
 import json
 import os
 
-from lemoji.generator.web_extractor import WebExtractor
-from lemoji.data.tree import tree
+from lEmoji.generator.web_extractor import WebExtractor
+from lEmoji.data.tree import tree
 
 
 class Generator:
-    def __init__(self):
-        self.tree = WebExtractor.build()
-        self.working_dir = os.path.join(os.getcwd(), 'lemoji')
-        self.data_file = os.path.join(os.getcwd(), 'lemoji', 'data', 'tree.py')
+    def __init__(self, proxies=None):
+        self.extractor = WebExtractor(proxies=proxies)
+        self.tree = self.extractor.build()
+        self.working_dir = os.path.join(os.getcwd(), 'lEmoji')
+        self.data_file = os.path.join(os.getcwd(), 'lEmoji', 'data', 'tree.py')
 
     @staticmethod
     def find_node(node_list, name):
@@ -34,7 +35,7 @@ class Generator:
                 elif node['time'] != his_node['time']:
                     self.generate(his_node['children'], node['children'], version=node['name'])
             elif node['name'].startswith('emoji'):
-                emoji_list.extend(WebExtractor.emoji_fetcher(node['link']))
+                emoji_list.extend(self.extractor.emoji_fetcher(node['link']))
 
         if version:
             path = os.path.join(self.working_dir, 'emoji_v%s.py' % version)

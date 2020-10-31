@@ -2,19 +2,16 @@ import requests
 
 from bs4 import BeautifulSoup as Souper, Tag
 
-proxies = {
-  "http": "http://localhost:1087",
-  "https": "http://localhost:1087",
-}
-
 
 class WebExtractor:
     base_url = 'https://www.unicode.org/Public/emoji/'
 
-    @staticmethod
-    def emoji_fetcher(url):
+    def __init__(self, proxies=None):
+        self.proxies = proxies
+
+    def emoji_fetcher(self, url):
         print('Retrieving', url, '...')
-        r = requests.get(url, proxies=proxies)
+        r = requests.get(url, proxies=self.proxies)
         data = r.content.decode()
         r.close()
 
@@ -34,9 +31,8 @@ class WebExtractor:
 
         return emoji_list
 
-    @classmethod
-    def analyse(cls, url):
-        r = requests.get(url, proxies=proxies)
+    def analyse(self, url):
+        r = requests.get(url, proxies=self.proxies)
         soup = Souper(r.content.decode(), 'html.parser')
         r.close()
 
@@ -58,7 +54,7 @@ class WebExtractor:
             if node['name'].endswith('/'):
                 node['name'] = node['name'][:-1]
 
-            time = a_tag.next_sibling  # type: str
+            time = a_tag.next_element.next_element.text  # type: str
             time = time.strip()
             time = time[:time.rfind(' ')].strip()
             node['time'] = time
@@ -66,12 +62,11 @@ class WebExtractor:
 
         return node_list
 
-    @classmethod
-    def build(cls, url=None):
-        url = url or cls.base_url
+    def build(self, url=None):
+        url = url or self.base_url
         print('Retrieving', url, '...')
-        node_list = cls.analyse(url)
+        node_list = self.analyse(url)
         for node in node_list:
             if node['type'] == 'folder':
-                node['children'] = cls.build(node['link'])
+                node['children'] = self.build(node['link'])
         return node_list
