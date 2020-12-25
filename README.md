@@ -41,6 +41,10 @@ If you have any interest to contribute this project, [contact me](mailto:i@6-79.
 
 ### Release History
 
+#### 0.2.1.beta, Released on Dec 25, 2020
+
+- Fix the bug of failed installing
+
 #### 0.2.beta, Released on Oct 31, 2020
 
 - As unicode.org modified the html code, we fix the bug that generator is failed to grab emoji data.
