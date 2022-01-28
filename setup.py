@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='lEmoji',
-    version='0.2.2',
+    version='0.2.3',
     keywords=['emoji'],
     description='emoji list for all version based on unicode.org',
     long_description=open("README.md", "r", encoding="utf-8").read(),

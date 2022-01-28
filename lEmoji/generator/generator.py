@@ -9,8 +9,9 @@ class Generator:
     def __init__(self, proxies=None):
         self.extractor = WebExtractor(proxies=proxies)
         self.tree = self.extractor.build()
-        self.working_dir = os.path.join(os.getcwd(), 'lEmoji')
-        self.data_file = os.path.join(os.getcwd(), 'lEmoji', 'data', 'tree.py')
+        # self.working_dir = os.path.join(os.getcwd(), 'lEmoji')
+        self.working_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.data_file = os.path.join(self.working_dir, 'data', 'tree.py')
 
     @staticmethod
     def find_node(node_list, name):
