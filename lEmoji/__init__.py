@@ -8,6 +8,7 @@ from .emoji_v12_0 import EMOJI_LIST as EMOJI_LIST_12_0
 from .emoji_v12_1 import EMOJI_LIST as EMOJI_LIST_12_1
 from .emoji_v13_0 import EMOJI_LIST as EMOJI_LIST_13_0
 from .emoji_v13_1 import EMOJI_LIST as EMOJI_LIST_13_1
+from .emoji_v14_0 import EMOJI_LIST as EMOJI_LIST_14_0
 
 
-EMOJI_LIST = EMOJI_LIST_13_1
+EMOJI_LIST = EMOJI_LIST_14_0
