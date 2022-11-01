@@ -1,6 +1,7 @@
 import requests
 
-from bs4 import BeautifulSoup as Souper, Tag
+from bs4 import BeautifulSoup as Souper
+from bs4.element import Tag
 
 
 class WebExtractor:

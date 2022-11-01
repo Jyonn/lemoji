@@ -41,6 +41,14 @@ If you have any interest to contribute this project, [contact me](mailto:i@6-79.
 
 ### Release History
 
+#### 15.0, Released on Nov 1, 2022
+
+- Update emoji v15.0
+
+#### 0.2.2, Released on Jan 28, 2022
+
+- Update emoji v14.0
+
 #### 0.2.1.beta, Released on Dec 25, 2020
 
 - Fix the bug of failed installing
